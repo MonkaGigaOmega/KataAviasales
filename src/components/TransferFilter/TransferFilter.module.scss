@@ -1,0 +1,70 @@
+$blue: #2196f3;
+$lightgray: #9abbce;
+$whiteblue: #f1fcff;
+$text-color: #4a4a4a;
+
+.transferFilter {
+  width: 232px;
+  height: 252px;
+  background-color: white;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: $text-color;
+}
+
+input[type='checkbox'] {
+  display: none;
+
+  &:checked + .checkbox {
+    border: 1px solid $blue;
+
+    &::before {
+      content: url(../../../logos/Shape.svg);
+      position: absolute;
+      top: -11px;
+      left: 3px;
+      font-size: 23px;
+      color: $blue;
+    }
+  }
+}
+
+.checkbox {
+  height: 20px;
+  width: 20px;
+  border: 1px solid $lightgray;
+  display: flex;
+  position: relative;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.transferOption {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 12px;
+  margin: 0;
+  padding: 20px 20px 10px 20px;
+}
+
+.transferOptionWrapper {
+  box-sizing: border-box;
+  padding: 0 20px;
+  &:hover {
+    background-color: $whiteblue;
+  }
+}

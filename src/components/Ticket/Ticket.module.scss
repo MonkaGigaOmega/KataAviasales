@@ -1,0 +1,64 @@
+.ticket {
+  width: 100%;
+  height: 184px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+}
+.priceLine {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.infoLineCenter {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.infoLineDown {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.timeToFly {
+  margin-right: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.travelTime {
+  margin-right: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.cities {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2196f3;
+}
+.airports,
+.transfer,
+.way {
+  font-size: 12px;
+  line-height: 18px;
+  color: #a0b0b9;
+  text-transform: uppercase;
+}
+.travelTime,
+.timeToFly,
+.cities {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
