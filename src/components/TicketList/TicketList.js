@@ -3,17 +3,20 @@ import { useSelector } from 'react-redux'
 import styles from './TicketList.module.scss'
 import { useState, useMemo } from 'react'
 import sortTickets from '../../helpers/sortTickets'
+import { Button, Result, Skeleton } from 'antd'
 export default function TicketList() {
   const filters = useSelector(state => state.filters)
   const sortType = useSelector(state => state.sort)
-  const tickets = useSelector(state => state.tickets?.tickets || [])
-
+  const ticketsState = useSelector(state => state.tickets)
+  const tickets = ticketsState.tickets || []
+  const error = ticketsState.error
   const [count, setCount] = useState(5)
   const activeTransferCounts = []
   if (filters.noTransfers) activeTransferCounts.push(0)
   if (filters.oneTransfer) activeTransferCounts.push(1)
   if (filters.twoTransfers) activeTransferCounts.push(2)
   if (filters.threeTransfers) activeTransferCounts.push(3)
+
   const filteredTickets = tickets.filter(ticket => {
     const stops1 = ticket.segments[0].stops.length
     const stops2 = ticket.segments[1].stops.length
@@ -24,9 +27,32 @@ export default function TicketList() {
     () => sortTickets(filteredTickets, sortType),
     [filteredTickets, sortType]
   )
+  if (error) {
+    return (
+      <Result
+        status="500"
+        title="500"
+        subTitle="Извините, произошла ошибка на сервере."
+        extra={
+          <Button type="primary" onClick={() => window.location.reload()}>
+            Обновить
+          </Button>
+        }
+      />
+    )
+  }
+
   return (
     <div className={styles.ticketList}>
-      {sortedTickets.length > 0 ? (
+      {tickets.length === 0 && !error ? (
+        // Показываем 5 скелетонов
+        Array.from({ length: 5 }).map((_, i) => (
+          <div className={styles.ticket} key={i}>
+            <Skeleton active paragraph={{ rows: 4 }} />
+          </div>
+        ))
+      ) : sortedTickets.length > 0 ? (
+        // Показываем билеты
         sortedTickets
           .slice(0, count)
           .map((ticket, index) => (
@@ -45,12 +71,14 @@ export default function TicketList() {
             />
           ))
       ) : (
+        // Если билеты загружены, но не прошли фильтр
         <div className={styles.noFlights}>Рейсов, подходящих под заданные фильтры, не найдено</div>
       )}
+
       {sortedTickets.length > 0 && (
         <button
           type="button"
-          onClick={() => setCount(prev => (prev += 5))}
+          onClick={() => setCount(prev => prev + 5)}
           className={styles.buttonMore}
         >
           Показать еще 5 билетов!

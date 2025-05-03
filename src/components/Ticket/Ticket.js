@@ -27,7 +27,7 @@ export default function Ticket({
         <div className={styles.price}>
           {Math.floor(price / 1000)} {price % 1000} Р
         </div>
-        <div>
+        <div className={styles.carrierLogo}>
           <img src={`https://pics.avs.io/99/36/${carrier}.png`} alt={`${carrier} logo`} />
         </div>
       </div>
