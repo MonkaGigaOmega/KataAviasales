@@ -3,7 +3,10 @@
   background-color: #f3f7fa;
   margin-left: auto;
   margin-right: auto;
-  height: 1350px;
+  min-height: 1350px;
+  height: 100%;
+  padding-bottom: 40px;
+  box-sizing: border-box;
 }
 body {
   font-family: 'Open Sans', sans-serif;

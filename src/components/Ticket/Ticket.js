@@ -1,5 +1,6 @@
 import styles from './Ticket.module.scss'
 import PropTypes from 'prop-types'
+import formatTime from '../../helpers/formatTime'
 export default function Ticket({
   price,
   cityOut,
@@ -9,41 +10,26 @@ export default function Ticket({
   durationIn,
   durationOut,
   dateIn,
-  dateOut
+  dateOut,
+  carrier
 }) {
   const hoursIn = Math.floor(durationIn / 60)
   const minIn = durationIn % 60
   const hoursOut = Math.floor(durationOut / 60)
-  const minOut = durationIn % 60
+  const minOut = durationOut % 60
 
-  function formatTime(duration) {
-    const date = new Date(duration)
-    const hours = date.getHours()
-    const minutes = date.getMinutes()
-    return [hours, minutes, hours + hoursIn, minutes + minIn]
-  }
-  const toFlyIn = formatTime(dateIn)
-  const toFlyOut = formatTime(dateOut)
-  if (toFlyIn[3] >= 60) {
-    toFlyIn[3] -= 60
-    toFlyIn[2] += 1
-  }
-  if (toFlyIn[2] >= 24) {
-    toFlyIn[2] -= 24
-  }
-  if (toFlyOut[3] >= 60) {
-    toFlyOut[3] -= 60
-    toFlyOut[2] += 1
-  }
-  if (toFlyOut[2] >= 24) {
-    toFlyOut[2] -= 24
-  }
+  const toFlyIn = formatTime(dateIn, durationIn)
+  const toFlyOut = formatTime(dateOut, durationOut)
 
   return (
     <div className={styles.ticket}>
       <div className={styles.priceLine}>
-        <div className={styles.price}>{price} Р</div>
-        <div>S7 Airlines</div>
+        <div className={styles.price}>
+          {Math.floor(price / 1000)} {price % 1000} Р
+        </div>
+        <div>
+          <img src={`https://pics.avs.io/99/36/${carrier}.png`} alt={`${carrier} logo`} />
+        </div>
       </div>
       <div className={styles.infoLineCenter}>
         <div className={styles.timeToFly}>
@@ -75,7 +61,7 @@ export default function Ticket({
                 ? '1 пересадка'
                 : `${transfersIn.length} пересадки`}
           </span>
-          <span>{transfersIn.join(', ')}</span>
+          <span>{transfersIn.join(', ') || 'Прямой рейс'}</span>
         </div>
       </div>
       <div className={styles.infoLineCenter}>
@@ -108,7 +94,7 @@ export default function Ticket({
                 ? '1 пересадка'
                 : `${transfersOut.length} пересадки`}
           </span>
-          <span>{transfersOut.join(', ')}</span>
+          <span>{transfersOut.join(', ') || 'Прямой рейс'}</span>
         </div>
       </div>
     </div>
@@ -122,6 +108,7 @@ Ticket.propTypes = {
   cityIn: PropTypes.string.isRequired,
   dateIn: PropTypes.string.isRequired,
   dateOut: PropTypes.string.isRequired,
+  carrier: PropTypes.string.isRequired,
   transfersIn: PropTypes.arrayOf(PropTypes.string).isRequired,
   transfersOut: PropTypes.arrayOf(PropTypes.string).isRequired
 }
