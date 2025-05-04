@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header className="Header" />
       <div className="Interface">
         <TransferFilter />
         <div className="Tickets">

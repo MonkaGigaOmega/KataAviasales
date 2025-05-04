@@ -1,5 +1,5 @@
 .aviaSalesApp {
-  max-width: 760px;
+  max-width: 890px;
   background-color: #f3f7fa;
   margin-left: auto;
   margin-right: auto;
@@ -16,9 +16,17 @@ body {
   display: flex;
   gap: 20px;
 }
+.Tickets {
+  max-width: 504px;
+  width: 100%;
+}
 @media (max-width: 768px) {
   .Interface {
     flex-direction: column;
+  }
+  .Tickets {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 @media (min-width: 386px), (max-width: 508px) {
