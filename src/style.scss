@@ -21,3 +21,10 @@ body {
     flex-direction: column;
   }
 }
+@media (min-width: 386px), (max-width: 508px) {
+  .aviaSalesApp {
+    margin-left: 8px;
+    margin-right: 8px;
+    box-sizing: border-box;
+  }
+}
