@@ -1,7 +1,7 @@
 .buttonWrapper {
   overflow: hidden;
   display: flex;
-  width: 502px;
+  max-width: 502px;
   height: 50px;
   border: 1px solid lightgrey;
   border-radius: 10px;
@@ -28,4 +28,19 @@
 .button.active {
   background-color: #2196f3;
   color: white;
+}
+@media (max-width: 768px) {
+  .buttonWrapper {
+    flex-direction: column;
+    height: 150px;
+    min-width: 370px;
+  }
+  .button {
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+  }
+  .button:last-child {
+    border-bottom: none;
+  }
 }

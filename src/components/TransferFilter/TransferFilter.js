@@ -4,7 +4,7 @@ export default function TransferFilter() {
   const filterState = useSelector(state => state.filters)
   const dispatch = useDispatch()
   return (
-    <div className={styles.transferFilter}>
+    <form className={styles.transferFilter}>
       <h3 className={styles.title}>Количество пересадок</h3>
       <div className={styles.transferOptionWrapper}>
         <label className={styles.transferOption}>
@@ -92,6 +92,6 @@ export default function TransferFilter() {
           <span className={styles.checkbox}></span>
         </label>
       </div>
-    </div>
+    </form>
   )
 }
