@@ -45,19 +45,17 @@ export default function TicketList() {
   return (
     <div className={styles.ticketList}>
       {tickets.length === 0 && !error ? (
-        // Показываем 5 скелетонов
         Array.from({ length: 5 }).map((_, i) => (
           <div className={styles.ticket} key={i}>
             <Skeleton active paragraph={{ rows: 4 }} />
           </div>
         ))
       ) : sortedTickets.length > 0 ? (
-        // Показываем билеты
         sortedTickets
           .slice(0, count)
           .map((ticket, index) => (
             <Ticket
-              key={index}
+              key={ticket.id}
               price={ticket.price}
               cityOut={ticket.segments[0].origin}
               cityIn={ticket.segments[0].destination}
@@ -71,7 +69,6 @@ export default function TicketList() {
             />
           ))
       ) : (
-        // Если билеты загружены, но не прошли фильтр
         <div className={styles.noFlights}>Рейсов, подходящих под заданные фильтры, не найдено</div>
       )}
 

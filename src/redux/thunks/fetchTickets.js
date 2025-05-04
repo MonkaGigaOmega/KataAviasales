@@ -8,7 +8,10 @@ export default function fetchTickets() {
         `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`
       )
       const data = await res.json()
-      dispatch({ type: 'FETCH_TICKETS_SUCCESS', payload: data.tickets })
+      dispatch({
+        type: 'FETCH_TICKETS_SUCCESS',
+        payload: data.tickets.map((ticket, index) => ({ ...ticket, id: index }))
+      })
     } catch (err) {
       dispatch({ type: 'FETCH_TICKETS_FAILURE', payload: err.message })
     }
