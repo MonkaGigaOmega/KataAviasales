@@ -53,7 +53,7 @@ export default function TicketList() {
       ) : sortedTickets.length > 0 ? (
         sortedTickets
           .slice(0, count)
-          .map((ticket, index) => (
+          .map(ticket => (
             <Ticket
               key={ticket.id}
               price={ticket.price}
