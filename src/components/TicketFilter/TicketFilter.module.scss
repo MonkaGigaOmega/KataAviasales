@@ -14,9 +14,11 @@
   border-left: 1px solid lightgrey;
   text-transform: uppercase;
   background-color: white;
-  padding: 0; // убирает внезапные отступы
-  outline: none; // убирает синюю рамку при клике (по желанию)
+  padding: 0;
+  outline: none;
   transition: background-color 0.2s ease;
+  font-weight: 00;
+  letter-spacing: 0.5px;
 }
 
 .button:first-child {

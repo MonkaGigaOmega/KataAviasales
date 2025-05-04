@@ -16,6 +16,10 @@
   letter-spacing: 0.8px;
   min-width: 370px;
   width: 100%;
+  cursor: pointer;
+}
+.buttonMore:hover {
+  background-color: #288ee2;
 }
 .noFlights {
   color: #1a5484;
